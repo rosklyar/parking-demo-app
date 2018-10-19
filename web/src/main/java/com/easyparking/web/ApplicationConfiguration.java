@@ -1,5 +1,7 @@
 package com.easyparking.web;
 
+import com.easyparking.web.service.DefaultParkingStateService;
+import com.easyparking.web.service.ParkingStateScheduler;
 import com.easyparking.web.service.ParkingStateService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +13,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class ApplicationConfiguration {
 
     @Bean
-    public ParkingStateService parkingStateService(SimpMessagingTemplate template) {
-        return new ParkingStateService(template);
+    public ParkingStateService parkingStateService() {
+        return new DefaultParkingStateService();
+    }
+
+    @Bean
+    public ParkingStateScheduler parkingStateScheduler(ParkingStateService parkingStateService,
+                                                       SimpMessagingTemplate template) {
+        return new ParkingStateScheduler(template, parkingStateService);
     }
 }
