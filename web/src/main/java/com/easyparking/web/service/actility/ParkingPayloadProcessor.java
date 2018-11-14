@@ -2,9 +2,13 @@ package com.easyparking.web.service.actility;
 
 import com.easyparking.web.domain.DeviceInfo;
 import com.easyparking.web.domain.ParkingPayload;
+import com.easyparking.web.service.decode.BitEncoder;
 import com.easyparking.web.service.decode.HexEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import static com.easyparking.web.service.decode.BitEncoder.getBit;
+import static com.easyparking.web.service.decode.HexEncoder.getBytes;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -17,7 +21,7 @@ public class ParkingPayloadProcessor {
 
         log.info("Started parsing payload {}", payload);
 
-        byte[] bytes = HexEncoder.getBytes(payload.getPayloadHex());
+        byte[] bytes = getBytes(payload.getPayloadHex());
         DeviceInfo deviceInfo = DeviceInfo.builder()
                 .deviceId(payload.getDevEui())
                 .time(payload.getTime())
@@ -42,8 +46,6 @@ public class ParkingPayloadProcessor {
         throw new RuntimeException("Unknown payload");
     }
 
-    private int getBit(byte value, int position) {
-        return (value >> position) & 1;
-    }
+
 
 }

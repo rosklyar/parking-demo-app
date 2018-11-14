@@ -45,7 +45,7 @@ public class ParkingPayloadProcessorTest {
     }
 
     private ParkingPayload parkingPayload(String id, String payload) {
-        return new ParkingPayload(id, payload, "");
+        return new ParkingPayload(id, "", payload);
     }
 
 }
