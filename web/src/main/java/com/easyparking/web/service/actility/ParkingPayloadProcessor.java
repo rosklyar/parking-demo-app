@@ -2,8 +2,6 @@ package com.easyparking.web.service.actility;
 
 import com.easyparking.web.domain.DeviceInfo;
 import com.easyparking.web.domain.ParkingPayload;
-import com.easyparking.web.service.decode.BitEncoder;
-import com.easyparking.web.service.decode.HexEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,11 +26,16 @@ public class ParkingPayloadProcessor {
                 .version(getVersion(payload.getPayloadHex()))
                 .parking(getBit(bytes[0], PARKING_BIT))
                 .battery(getBit(bytes[0], BATTER_BIT))
+                .frameType(getFrameType(bytes[0]))
                 .build();
         log.info("DeviceInfo : {}", deviceInfo);
 
         return deviceInfo;
 
+    }
+
+    private int getFrameType(byte value) {
+        return value & (byte) 15; // & 00001111 (last 4 bits describes frame type )
     }
 
     private int getVersion(String payloadHex) {

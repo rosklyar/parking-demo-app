@@ -11,15 +11,22 @@ function startConsuming() {
     });
 }
 
-function showParkingState(places) {
+function showParkingState(allDeviceInfos) {
     $("#parking").empty();
-    places.forEach(function(place){
+    allDeviceInfos.forEach(function(deviceInfos){
+        $("#parking").append("<thead>");
         $("#parking").append("<tr>");
-        $("#parking").append("<td>DevEui: " + place.deviceId + "</td>");
-        $("#parking").append("<td>Battery: " + place.battery + "</td>");
-        $("#parking").append("<td>State: " + place.parking + "</td>");
-        $("#parking").append("<td>Time: " + place.time + "</td>");
+        $("#parking").append("<th>" + deviceInfos[0].deviceId + "</th>");
         $("#parking").append("</tr>");
+        $("#parking").append("</thead>");
+        deviceInfos.forEach(function(deviceInfo){
+            $("#parking").append("<tr>");
+            $("#parking").append("<td>Battery: " + deviceInfo.battery + "</td>");
+            $("#parking").append("<td>State: " + deviceInfo.parking + "</td>");
+            $("#parking").append("<td>Frame type: " + deviceInfo.frameType + "</td>");
+            $("#parking").append("<td>Time: " + deviceInfo.time + "</td>");
+            $("#parking").append("</tr>");
+        });
     });
 }
 

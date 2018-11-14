@@ -11,5 +11,6 @@ public class DeviceInfo {
     private final String time;
     private final int parking;
     private final int battery;
+    private final int frameType;
     private final int version;
 }
