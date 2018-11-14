@@ -18,6 +18,7 @@ function showParkingState(places) {
         $("#parking").append("<td>DevEui: " + place.deviceId + "</td>");
         $("#parking").append("<td>Battery: " + place.battery + "</td>");
         $("#parking").append("<td>State: " + place.parking + "</td>");
+        $("#parking").append("<td>Time: " + place.time + "</td>");
         $("#parking").append("</tr>");
     });
 }

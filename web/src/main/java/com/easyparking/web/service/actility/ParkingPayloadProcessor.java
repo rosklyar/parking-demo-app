@@ -2,6 +2,7 @@ package com.easyparking.web.service.actility;
 
 import com.easyparking.web.domain.DeviceInfo;
 import com.easyparking.web.domain.ParkingPayload;
+import com.easyparking.web.service.decode.HexEncoder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,9 +17,10 @@ public class ParkingPayloadProcessor {
 
         log.info("Started parsing payload {}", payload);
 
-        byte[] bytes = hexStringToByteArray(payload.getPayloadHex());
+        byte[] bytes = HexEncoder.getBytes(payload.getPayloadHex());
         DeviceInfo deviceInfo = DeviceInfo.builder()
                 .deviceId(payload.getDevEui())
+                .time(payload.getTime())
                 .version(getVersion(payload.getPayloadHex()))
                 .parking(getBit(bytes[0], PARKING_BIT))
                 .battery(getBit(bytes[0], BATTER_BIT))
@@ -38,16 +40,6 @@ public class ParkingPayloadProcessor {
         }
         log.error("Unknown payload {}", payloadHex);
         throw new RuntimeException("Unknown payload");
-    }
-
-    private byte[] hexStringToByteArray(String s) {
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i + 1), 16));
-        }
-        return data;
     }
 
     private int getBit(byte value, int position) {
