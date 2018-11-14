@@ -51,7 +51,7 @@ public class ParkingPayloadProcessor {
     }
 
     private int getBit(byte value, int position) {
-        return (value & (1 << position));
+        return (value >> position) & 1;
     }
 
 }
