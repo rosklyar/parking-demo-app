@@ -12,8 +12,8 @@ import static com.easyparking.web.service.decode.HexEncoder.getBytes;
 @RequiredArgsConstructor
 public class ParkingPayloadProcessor {
 
-    public static final int PARKING_BIT = 6;
-    public static final int BATTER_BIT = 7;
+    public static final int PARKING_BIT = 7;
+    public static final int BATTER_BIT = 6;
 
     public DeviceInfo parsePayload(ParkingPayload payload) {
 
