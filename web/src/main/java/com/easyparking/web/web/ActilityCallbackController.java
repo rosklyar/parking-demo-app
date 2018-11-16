@@ -30,12 +30,4 @@ public class ActilityCallbackController {
         return ResponseEntity.noContent().build();
 
     }
-
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-
-        log.info("Received test request");
-        return ResponseEntity.noContent().build();
-
-    }
 }

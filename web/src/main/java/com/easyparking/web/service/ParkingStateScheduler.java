@@ -18,4 +18,9 @@ public class ParkingStateScheduler {
     public void trigger() {
         this.template.convertAndSend("/topic/parking-state", parkingStateService.get());
     }
+
+    @Scheduled(fixedRate = 2000)
+    public void triggerLive() {
+        this.template.convertAndSend("/topic/parking-state/live", parkingStateService.getLatest());
+    }
 }

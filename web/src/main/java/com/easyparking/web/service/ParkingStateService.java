@@ -10,4 +10,6 @@ public interface ParkingStateService {
     Collection<Queue<DeviceInfo>> get();
 
     void updateState(DeviceInfo deviceInfo);
+
+    Collection<DeviceInfo> getLatest();
 }

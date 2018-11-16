@@ -12,3 +12,18 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+

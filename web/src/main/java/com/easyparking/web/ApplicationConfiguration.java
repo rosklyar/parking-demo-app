@@ -1,6 +1,7 @@
 package com.easyparking.web;
 
 import com.easyparking.web.service.DefaultParkingStateService;
+import com.easyparking.web.service.DeviceAliasesService;
 import com.easyparking.web.service.ParkingStateScheduler;
 import com.easyparking.web.service.ParkingStateService;
 import com.easyparking.web.service.actility.ParkingPayloadProcessor;
@@ -19,8 +20,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public ParkingStateService parkingStateService() {
-        return new DefaultParkingStateService();
+    public DeviceAliasesService deviceAliasesService() {
+        return new DeviceAliasesService();
+    }
+
+    @Bean
+    public ParkingStateService parkingStateService(DeviceAliasesService deviceAliasesService) {
+        return new DefaultParkingStateService(deviceAliasesService);
     }
 
     @Bean

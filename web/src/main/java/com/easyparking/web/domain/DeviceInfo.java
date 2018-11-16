@@ -4,10 +4,11 @@ import lombok.Builder;
 import lombok.Value;
 
 @Value
-@Builder
+@Builder(toBuilder = true)
 public class DeviceInfo {
 
     private final String deviceId;
+    private final String alias;
     private final String time;
     private final int parking;
     private final int battery;
