@@ -15,7 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/devices/", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/devices", produces = APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class DeviceInfoController {
 
